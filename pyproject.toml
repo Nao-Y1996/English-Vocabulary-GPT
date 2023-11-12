@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "english-vocabulary-gpt"
+version = "0.1.0"
+description = ""
+authors = ["hachimada"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+openai = "^1.2.3"
+pytest = "^7.4.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
