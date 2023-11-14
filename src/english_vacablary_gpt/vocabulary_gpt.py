@@ -88,25 +88,31 @@ class GptUsage:
 
 class VocabularyGPTResponse:
     def __init__(self, response: ChatCompletion):
-        print(response)
         self.vocabulary = Vocabulary(response.choices[0].message.content)
-        self.usage: CompletionUsage = response.usage
+        self._usage: CompletionUsage = response.usage
 
     def get_vocabulary(self) -> Vocabulary:
         """Get vocabularyJSON string of the response"""
         return self.vocabulary
 
+    def usage(self) -> str:
+        """Show usage of the API call"""
+        return f"<token usage>\n" \
+               f"  prompt: {self.get_prompt_tokens()}\n" \
+               f"  completion: {self.get_completion_tokens()}\n" \
+               f"  total: {self.get_total_tokens()}"
+
     def get_prompt_tokens(self):
         """Get the number of tokens used for the prompt"""
-        return self.usage.prompt_tokens
+        return self._usage.prompt_tokens
 
     def get_total_tokens(self):
         """Get the total number of tokens used"""
-        return self.usage.total_tokens
+        return self._usage.total_tokens
 
     def get_completion_tokens(self):
         """Get the number of tokens used for the completion"""
-        return self.usage.completion_tokens
+        return self._usage.completion_tokens
 
 
 class VocabularyGPT:
