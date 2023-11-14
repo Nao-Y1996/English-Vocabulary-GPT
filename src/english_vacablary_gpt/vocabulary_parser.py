@@ -31,7 +31,6 @@ class RelatedTerm:
 class Vocabulary:
     def __init__(self, json_str: str) -> None:
         data = json.loads(json_str)
-        print(data)
         self.word: str = data['word']
         self.explanations: list[Explanation] = [Explanation(explanation) for explanation in data['explanations']]
         self.related_term: list[RelatedTerm] = [RelatedTerm(related_term) for related_term in data['related_term']]
